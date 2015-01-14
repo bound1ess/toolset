@@ -1,0 +1,9 @@
+{
+    "name": "sample-projects/php",
+    "require": {
+        "phpspec/phpspec": "~2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4"
+    }
+}
