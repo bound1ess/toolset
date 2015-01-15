@@ -1,7 +1,6 @@
 require_relative "../lib/lang-detector"
 
 RSpec.describe(Toolset::LangDetector) do
-
     before(:all) do
         @detector = Toolset::LangDetector.new
         @projects_dir = File.dirname(__FILE__) + "/../sample-projects"
