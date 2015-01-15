@@ -31,4 +31,4 @@ toolset scan-projects path/to/projects/directory
 The following output formats are supported:
 
 - `json`
-- `markdown`
+- `plain`
