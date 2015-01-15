@@ -19,4 +19,10 @@ RSpec.describe(Toolset::LangDetector) do
         expect(@detector.detect("#{@projects_dir}/js/npm-component")).to eq(:js)
         expect(@detector.detect("#{@projects_dir}/js/npm-package")).to eq(:js)
     end
+
+    it("raises an exception if could not detect the project's language") do
+        expect {
+            @detector.detect("#{@projects_dir}/some-weird-language")
+        }.to raise_error(RuntimeError)
+    end
 end
