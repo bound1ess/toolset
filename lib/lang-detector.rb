@@ -12,6 +12,13 @@ module Toolset
                 end
             end
 
+            # Check for Ruby.
+            if File.exist?(project_path + "/Gemfile")
+                if File.read(project_path + "/Gemfile").include?("gem")
+                    return :ruby
+                end
+            end
+
             # We cannot detect it for you :(
             raise "Cannot detect the project's language (#{project_path})."
         end

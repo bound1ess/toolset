@@ -10,4 +10,10 @@ RSpec.describe(Toolset::LangDetector) do
 
         expect(@detector.detect(project_path)).to eq(:PHP)
     end
+
+    it("detects a Ruby project") do
+        project_path = File.dirname(__FILE__) + "/../sample-projects/ruby"
+
+        expect(@detector.detect(project_path)).to eq(:ruby)
+    end
 end
