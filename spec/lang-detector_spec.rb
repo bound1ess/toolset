@@ -16,4 +16,12 @@ RSpec.describe(Toolset::LangDetector) do
 
         expect(@detector.detect(project_path)).to eq(:ruby)
     end
+
+    it("detects a JS project") do
+        base_project_path = File.dirname(__FILE__) + "/../sample-projects/js"
+
+        expect(@detector.detect(base_project_path + "/bower")).to eq(:js)
+        expect(@detector.detect(base_project_path + "/npm-component")).to eq(:js)
+        expect(@detector.detect(base_project_path + "/npm-package")).to eq(:js)
+    end
 end
