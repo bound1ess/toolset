@@ -1,5 +1,7 @@
 # Toolset
 
+[![Build Status](https://travis-ci.org/bound1ess/toolset.svg?branch=master)](https://travis-ci.org/bound1ess/toolset)
+
 Very experimental project.
 
 ## Supported languages and package managers
