@@ -7,7 +7,7 @@ RSpec.describe(Toolset::PackageManagers::BaseManager) do
 
     it("get_dependencies() raises NotImplementedError") do
         expect {
-            @manager.get_dependencies()
+            @manager.get_dependencies(nil)
         }.to raise_error(NotImplementedError)
     end
 end

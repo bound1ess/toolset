@@ -1,7 +1,7 @@
 module Toolset
     module PackageManagers
         class BaseManager
-            def get_dependencies
+            def get_dependencies(path)
                 raise NotImplementedError
             end
         end
