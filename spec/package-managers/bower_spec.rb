@@ -10,4 +10,10 @@ RSpec.describe(Toolset::PackageManagers::Bower) do
 
         expect(@bower.get_dependencies(path)).to eq(["angular", "bootstrap", "jquery"])
     end
+
+    it("will raise IOError if something goes wrong") do
+        expect {
+            @bower.get_dependencies("invalid-path")
+        }.to raise_error(IOError)
+    end
 end
