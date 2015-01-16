@@ -5,3 +5,5 @@ end
 task :test do
     sh "rspec ./spec --color --format=documentation"
 end
+
+task :default => [:test]
