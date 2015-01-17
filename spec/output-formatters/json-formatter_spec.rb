@@ -11,6 +11,6 @@ RSpec.describe(Toolset::OutputFormatters::JsonFormatter) do
             :key => "value",
         }
 
-        expect(@formatter.format(data)).to eq(JSON.generate(data))
+        expect(@formatter.format(data)).to eq(JSON.pretty_generate(data))
     end
 end
