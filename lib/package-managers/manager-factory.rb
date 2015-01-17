@@ -2,7 +2,7 @@ module Toolset
     module PackageManagers
         class ManagerFactory
             def new_manager(type, capitalize = true)
-                if capitalize
+                if capitalize and not type == type.upcase
                     type.capitalize!
                 end
 

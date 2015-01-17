@@ -26,10 +26,16 @@ module Toolset
             project_language = @lang.detect(path)
             project_packages = []
 
-            @managers[project_language].map { |manager|
+            @managers[project_language].each { |manager|
                 manager = @factories[:manager].new_manager(manager)
 
-                project_packages.concat(manager.get_dependencies(path))
+                begin
+                    dependencies = manager.get_dependencies(path)
+                rescue IOError
+                    dependencies = []
+                ensure
+                    project_packages.concat(dependencies)
+                end
             }
 
             {
@@ -41,7 +47,17 @@ module Toolset
         end
 
         def scan_projects(path)
-            # ...
+            if not Dir.exists?(path)
+                raise IOError
+            end
+
+            result = {}
+
+            Dir[path + "/*"].each { |project_path|
+                result.merge!(scan_project(project_path))
+            }
+
+            result
         end
     end
 end

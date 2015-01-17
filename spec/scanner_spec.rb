@@ -22,6 +22,20 @@ RSpec.describe(Toolset::Scanner) do
     end
 
     it("scans 1+ projects") do
-        # TODO
+        expect(@scanner.scan_projects(File.dirname(__FILE__) + "/../sample-projects/js"))
+            .to eq({
+                :bower => {
+                    :language => "js",
+                    :packages => ["angular", "bootstrap", "jquery"],
+                },
+                :"npm-component" => {
+                    :language => "js",
+                    :packages => ["mocha", "chai"],
+                },
+                :"npm-package" => {
+                    :language => "js",
+                    :packages => ["chai", "karma"],
+                },
+            })
     end
 end
