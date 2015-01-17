@@ -58,6 +58,6 @@ RSpec.describe(Toolset::Scanner) do
 
         reports = @scanner.scan_projects(path, true)
 
-        expect(reports.first[:json][:name]).to eq("bower")
+        expect(reports.first[:json][:name]).to be_a(String)
     end
 end
