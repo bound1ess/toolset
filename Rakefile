@@ -1,6 +1,5 @@
 task :install do
     sh "bundle install"
-    sh "touch toolset-dev.gem"
 end
 
 task :test do
@@ -9,6 +8,7 @@ task :test do
 end
 
 task :"build-gem" do
+    sh "touch toolset-*.gem"
     sh "rm toolset-*.gem"
     sh "gem build toolset.gemspec"
 end

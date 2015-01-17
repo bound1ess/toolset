@@ -13,6 +13,13 @@ rake test
 cat coverage/coverage.json
 ```
 
+## Gem
+
+```shell
+rake build-gem
+rake install-gem
+```
+
 ## Supported languages and package managers
 
 Here they are:
