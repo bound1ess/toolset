@@ -16,10 +16,12 @@ module Toolset
         def scan_project(path)
             puts "Scanning a project located at #{path}..."
 
-            @scanner.scan_project(path, true).each { |extension, report|
-                @output.store(file = "#{report[:name]}.#{extension}", report[:content])
+            @scanner.scan_project(path, true).each { |project_name, project|
+                project[:report].each { |extension, content|
+                    @output.store(file = "#{project_name.to_s}.#{extension.to_s}", content)
 
-                puts "Writing toolset-output/#{file}..."
+                    puts "Writing toolset-output/#{file}..."
+                }
             }
         end
 
@@ -27,8 +29,8 @@ module Toolset
         def scan_projects(path)
             puts "Scanning projects located at #{path}..."
 
-            @scanner.scan_projects(path, true).each { |report|
-                scan_project("#{path}/#{report[report.keys.first][:name]}")
+            @scanner.scan_projects(path, true).keys.each { |project|
+                scan_project("#{path}/#{project.to_s}")
             }
         end
     end

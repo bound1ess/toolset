@@ -16,17 +16,12 @@ RSpec.describe(Toolset::Scanner) do
                 },
             })
 
-        report = @scanner.scan_project(path, true)
+        project = @scanner.scan_project(path, true).values.first
 
-        expect(report).to be_a(Hash)
-
-        expect(report[:json]).to be_a(Hash)
-        expect(report[:json][:name]).to be_a(String)
-        expect(report[:json][:content]).to be_a(String)
-
-        expect(report[:plain]).to be_a(Hash)
-        expect(report[:plain][:name]).to be_a(String)
-        expect(report[:plain][:content]).to be_a(String)
+        expect(project).to be_a(Hash)
+        expect(project[:report]).to be_a(Hash)
+        expect(project[:report][:json]).to be_a(String)
+        expect(project[:report][:plain]).to be_a(String)
     end
 
     it("raises IOError if something goes wrong") do
@@ -40,7 +35,9 @@ RSpec.describe(Toolset::Scanner) do
     end
 
     it("scans 1+ projects") do
-        expect(@scanner.scan_projects(path=File.dirname(__FILE__) + "/../sample-projects/js"))
+        path = File.dirname(__FILE__) + "/../sample-projects/js"
+
+        expect(@scanner.scan_projects(path))
             .to eq({
                 :bower => {
                     :language => "js",
@@ -56,8 +53,8 @@ RSpec.describe(Toolset::Scanner) do
                 },
             })
 
-        reports = @scanner.scan_projects(path, true)
+        projects = @scanner.scan_projects(path, true)
 
-        expect(reports.first[:json][:name]).to be_a(String)
+        expect(projects[:bower][:report]).to be_a(Hash)
     end
 end

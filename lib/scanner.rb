@@ -43,27 +43,22 @@ module Toolset
             }
 
             project = {
-                project_name.to_sym => {
-                    :language => project_language.to_s.downcase,
-                    :packages => project_packages,
-                },
+                :language => project_language.to_s.downcase,
+                :packages => project_packages,
             }
 
             if format
                 report = {}
 
                 @formatters.each { |formatter|
-                    report[formatter.to_sym] = {
-                        :name    => project_name,
-                        :content => 
-                            @factories[:formatter].new_formatter(formatter).format(project),
-                    }
+                    report[formatter.to_sym] =
+                        @factories[:formatter].new_formatter(formatter).format(project)
                 }
 
-                return report
+                project[:report] = report
             end
 
-            project
+            {project_name.to_sym => project}
         end
 
         def scan_projects(path, format = false)
@@ -71,18 +66,10 @@ module Toolset
                 raise IOError
             end
 
-            if format
-                result = []
-            else
-                result = {}
-            end
+            result = {}
 
             Dir[path + "/*"].each { |project_path|
-                if not format
-                    result.merge!(scan_project(project_path, format))
-                else
-                    result.push(scan_project(project_path, format))
-                end
+                result.merge!(scan_project(project_path, format))
             }
 
             result
