@@ -3,7 +3,7 @@ task :install do
 end
 
 task :test do
-    sh "rspec ./spec --color --format=documentation"
+    sh "rspec ./spec --color --format=documentation --require=spec_helper.rb"
 end
 
 task :default => [:test]
