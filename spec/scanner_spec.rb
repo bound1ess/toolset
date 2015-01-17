@@ -6,13 +6,21 @@ RSpec.describe(Toolset::Scanner) do
     end
 
     it("scans a project") do
-        expect(@scanner.scan_project(File.dirname(__FILE__) + "/../sample-projects/php"))
+        path = "#{File.dirname(__FILE__)}/../sample-projects/php"
+
+        expect(@scanner.scan_project(path))
             .to eq({
                 :php => {
                     :language => "php",
                     :packages => ["phpspec/phpspec", "phpunit/phpunit"],
                 },
             })
+
+        report = @scanner.scan_project(path, true)
+
+        expect(report).to be_a(Hash)
+        expect(report[:json]).to be_a(String)
+        expect(report[:plain]).to be_a(String)
     end
 
     it("raises IOError if something goes wrong") do
