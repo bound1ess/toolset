@@ -49,8 +49,11 @@ module Toolset
                 report = {}
 
                 @formatters.each { |formatter|
-                    report[formatter.to_sym] =
-                        @factories[:formatter].new_formatter(formatter).format(project)
+                    report[formatter.to_sym] = {
+                        :name    => project_name,
+                        :content => 
+                            @factories[:formatter].new_formatter(formatter).format(project),
+                    }
                 }
 
                 return report
@@ -64,10 +67,18 @@ module Toolset
                 raise IOError
             end
 
-            result = {}
+            if format
+                result = []
+            else
+                result = {}
+            end
 
             Dir[path + "/*"].each { |project_path|
-                result.merge!(scan_project(project_path, format))
+                if not format
+                    result.merge!(scan_project(project_path, format))
+                else
+                    result.push(scan_project(project_path, format))
+                end
             }
 
             result
