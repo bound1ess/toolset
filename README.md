@@ -4,6 +4,15 @@
 
 Very experimental project.
 
+## Tests
+
+- `100%` code coverage.
+
+```shell
+rake test
+cat coverage/coverage.json
+```
+
 ## Supported languages and package managers
 
 Here they are:
