@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require "json"
+
+path = File.dirname(__FILE__) + "/../coverage/coverage.json"
+
+File.write(path, JSON.pretty_generate(JSON.parse(File.read(path))))
+
+puts "Coverage.json was updated."
