@@ -1,8 +1,13 @@
 require "thor"
 
+require_relative "scanner"
+require_relative "output"
+
 module Toolset
     class CLI < Thor
-        def initialize
+        def initialize(*args)
+            super
+
             @scanner = Scanner.new
             @output = Output.new
         end

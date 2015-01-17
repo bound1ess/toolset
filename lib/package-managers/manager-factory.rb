@@ -1,3 +1,8 @@
+require_relative "composer"
+require_relative "gem"
+require_relative "npm"
+require_relative "bower"
+
 module Toolset
     module PackageManagers
         class ManagerFactory

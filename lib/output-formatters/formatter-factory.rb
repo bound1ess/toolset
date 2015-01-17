@@ -1,3 +1,6 @@
+require_relative "json-formatter"
+require_relative "plain-formatter"
+
 module Toolset
     module OutputFormatters
         class FormatterFactory

@@ -1,5 +1,7 @@
 require "json"
 
+require_relative "base-manager"
+
 module Toolset
     module PackageManagers
         class Bower < BaseManager

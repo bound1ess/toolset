@@ -1,3 +1,7 @@
+require_relative "package-managers/manager-factory"
+require_relative "output-formatters/formatter-factory"
+require_relative "lang-detector"
+
 module Toolset
     class Scanner
         def initialize

@@ -1,3 +1,5 @@
+require_relative "base-manager"
+
 module Toolset
     module PackageManagers
         class Gem < BaseManager

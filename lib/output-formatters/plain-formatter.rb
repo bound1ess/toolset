@@ -1,3 +1,5 @@
+require_relative "base-formatter"
+
 module Toolset
     module OutputFormatters
         class PlainFormatter < BaseFormatter
