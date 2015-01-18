@@ -10,7 +10,7 @@ module Toolset
 
                 gemfile = File.read(path)
 
-                gemfile.scan(/gem\s([^\s]+)/).map { |gem|
+                gemfile.scan(/gem\s([^\s,]+)/).map { |gem|
                     gem.first[1...-1]
                 }
             end
